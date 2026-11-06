@@ -1,12 +1,12 @@
 # Bitcoin's Expected Return: An Age Rule That Beats Current Practice
 
-Agisilaos Papadogiannis — Independent Researcher (PhD, MBA) — apapadogiannis@gmail.com — ORCID [0009-0002-7753-7052](https://orcid.org/0009-0002-7753-7052)
+Agisilaos Papadogiannis, Independent Researcher (PhD, MBA). Correspondence: apapadogiannis@gmail.com. ORCID: [0009-0002-7753-7052](https://orcid.org/0009-0002-7753-7052)
 
 Working paper, November 2026. This repository holds the paper, every data file it uses, the scripts that produce every exhibit, and the results they generate. Running `./run_all.sh` regenerates all of it in about a minute.
 
 ## What the paper does
 
-It backtests the ways practitioners set Bitcoin's long-run expected return — constant rates of 7–21% a year (the level of institutional capital market assumptions), Bitcoin's own past growth, trend models, a CAPM rate — against the returns that followed over rolling three- to five-year periods since 2012, with gold as a control and Ether as a younger comparison. The institutional rates were beaten in about nine periods in ten; Bitcoin's long-run average growth was almost never beaten. An **age rule** implicit in Bitcoin's power-law price trend comes closest: in log terms, Bitcoin's expected return is its power-law exponent (about 5.6) divided by its age in years, a forecast of about 32% a year for September 2026 to 2031.
+It backtests the ways practitioners set Bitcoin's long-run expected return (constant rates of 7–21% a year, the level of institutional capital market assumptions; Bitcoin's own past growth; trend models; a CAPM rate) against the returns that followed over rolling three- to five-year periods since 2012, with gold as a control and Ether as a younger comparison. The institutional rates were beaten in about nine periods in ten; Bitcoin's long-run average growth was almost never beaten. An **age rule** implicit in Bitcoin's power-law price trend comes closest: in log terms, Bitcoin's expected return is its power-law exponent (about 5.6) divided by its age in years, a forecast of about 32% a year for September 2026 to 2031.
 
 ## Layout
 
@@ -31,7 +31,7 @@ Python 3.11+ with numpy, pandas, matplotlib, statsmodels and openpyxl. The scrip
 |---|---|---|
 | `anchor_flip.py` | How often the outcome changes across comparison rates | input to `section5.py` |
 | `robustness.py` | Bootstrap draws for the trend models | input to `section5.py` |
-| `section5.py` | Monthly series, candidate rates and the backtest machinery shared by the other scripts | — |
+| `section5.py` | Monthly series, candidate rates and the backtest machinery shared by the other scripts | used by the other scripts |
 | `calibration.py` | Miss, median miss, share beaten, by rate and horizon | Exhibits A2–A3 |
 | `today_rates.py`, `today_rates_h.py` | What each method implies today, by horizon | Exhibit A2 |
 | `expected_return_bands.py` | Average miss with 95% stationary-bootstrap bands; gold candidates | Exhibit 1, Exhibit A3 |
@@ -43,7 +43,7 @@ Python 3.11+ with numpy, pandas, matplotlib, statsmodels and openpyxl. The scrip
 | `adoption.py` | Price, age and adoption: stationarity and cointegration tests | Exhibit A4 |
 | `post_publication.py` | Periods beginning after the power law was published | Exhibit A5 |
 | `ether_gold_today.py` | Ether and gold rates today | Section 7 |
-| `make_btc_monthly.py` | Builds `data/btc_monthly.csv` from the raw Bitstamp candles (not included, see below) | — |
+| `make_btc_monthly.py` | Builds `data/btc_monthly.csv` from the raw Bitstamp candles (not included, see below) | Appendix A.1 |
 
 ## Data
 
