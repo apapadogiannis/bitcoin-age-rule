@@ -1,5 +1,7 @@
 # Bitcoin's Expected Return: An Age Rule That Beats Current Practice
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24004326.svg)](https://doi.org/10.5281/zenodo.24004326)
+
 Agisilaos Papadogiannis, Independent Researcher (PhD, MBA). Correspondence: apapadogiannis@gmail.com. ORCID: [0009-0002-7753-7052](https://orcid.org/0009-0002-7753-7052)
 
 Working paper, November 2026. This repository holds the paper, every data file it uses, the scripts that produce every exhibit, and the results they generate. Running `./run_all.sh` regenerates all of it in about a minute.
@@ -63,6 +65,8 @@ Samples end in September 2026 (April 2026 for Ether and the address counts).
 ## Citation
 
 Papadogiannis, A. 2026. "Bitcoin's Expected Return: An Age Rule That Beats Current Practice." Working paper. https://github.com/apapadogiannis/bitcoin-age-rule
+
+Code and data: Papadogiannis, A. 2026. "bitcoin-age-rule: Replication package." Zenodo. https://doi.org/10.5281/zenodo.24004326 (concept DOI; always resolves to the latest version).
 
 ## Licence
 

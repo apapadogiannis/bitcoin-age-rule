@@ -6,6 +6,10 @@ authors:
     given-names: Agisilaos
     orcid: "https://orcid.org/0009-0002-7753-7052"
 date-released: 2026-11-06
+version: "1.0"
+doi: "10.5281/zenodo.24004326"
+license: MIT
+repository-code: "https://github.com/apapadogiannis/bitcoin-age-rule"
 url: "https://github.com/apapadogiannis/bitcoin-age-rule"
 type: software
 preferred-citation:
