@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the paper."
+title: "Bitcoin's Expected Return: An Age Rule That Beats Current Practice"
+authors:
+  - family-names: Papadogiannis
+    given-names: Agisilaos
+    orcid: "https://orcid.org/0009-0002-7753-7052"
+date-released: 2026-11-06
+url: "https://github.com/apapadogiannis/bitcoin-age-rule"
+type: software
+preferred-citation:
+  type: unpublished
+  title: "Bitcoin's Expected Return: An Age Rule That Beats Current Practice"
+  authors:
+    - family-names: Papadogiannis
+      given-names: Agisilaos
+      orcid: "https://orcid.org/0009-0002-7753-7052"
+  year: 2026
+  notes: "Working paper, November 2026"
