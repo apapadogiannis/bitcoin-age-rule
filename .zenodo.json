@@ -1,0 +1,25 @@
+{
+  "title": "Bitcoin's Expected Return: An Age Rule That Beats Current Practice: paper and replication package",
+  "upload_type": "software",
+  "description": "Working paper and full replication package. Backtest of the ways practitioners set Bitcoin's long-run expected return (constant rates of 7-21% a year, Bitcoin's own past growth, trend models, a CAPM rate) against the returns that followed over rolling three- to five-year periods since 2012, with gold as a control and Ether as a younger comparison. An age rule implicit in Bitcoin's power-law price trend (exponent divided by age) comes closest, forecasting about 32% a year for 2026-2031. Includes all data, scripts, result tables and figures; the scripts reproduce every number in the paper.",
+  "creators": [
+    {
+      "name": "Papadogiannis, Agisilaos",
+      "orcid": "0009-0002-7753-7052"
+    }
+  ],
+  "keywords": ["Bitcoin", "cryptoassets", "expected return", "capital market assumptions", "power law", "age rule", "backtesting", "CAPM", "gold", "Ether"],
+  "license": "MIT",
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/apapadogiannis/bitcoin-age-rule",
+      "scheme": "url"
+    },
+    {
+      "relation": "isRelatedTo",
+      "identifier": "10.5281/zenodo.24003938",
+      "scheme": "doi"
+    }
+  ]
+}

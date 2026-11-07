@@ -59,6 +59,7 @@
 \author{Agisilaos Papadogiannis\thanks{Independent Researcher (PhD, MBA). \textit{Correspondence:} apapadogiannis@gmail.com. \textit{ORCID:} 0009-0002-7753-7052. Data, code and replication files: \url{https://github.com/apapadogiannis/bitcoin-age-rule}, archived at \url{https://doi.org/10.5281/zenodo.24004326}.}}
 \date{November 2026}
 
+\graphicspath{{../figures/}}
 \begin{document}
 \maketitle
 
@@ -127,7 +128,7 @@ In words, the rate is the trend's own growth over the coming horizon, taken as t
 \centering
 \caption{How each way of setting the expected return fared as a forecast, and what it implies today: average and median miss, with the band for the average.}
 \label{fig:main}
-\includegraphics[width=0.95\textwidth]{figs/fig_main.pdf}
+\includegraphics[width=0.95\textwidth]{fig_main.pdf}
 \par\smallskip
 \begin{minipage}{\textwidth}\footnotesize
 \emph{Notes:} Miss: the asset's annual return relative to the rate, $\widehat{G}^{1/h}-1$, in percentage points. For each candidate rate the filled dot is the average miss, $\bar{G}^{1/h}-1$, over rolling $h$-year periods, the quantity a correct expected return sets to zero; the line is its 95\% band from 5,000 stationary-bootstrap resamples of the sequence of $\widehat{G}$ (mean block length equal to the horizon), not the range of outcomes; the hollow diamond is the median miss. The age rule is shown in blue. The columns give the rate the method implies at the end of the sample (September 2026; April 2026 for Ether) and the share of periods in which the asset beat the rate. A band that excludes zero means the data reject the rate: to the right, too low; to the left, too high. A correct expected return has an average miss near zero and is beaten in about 45\% of periods for gold and 17--34\% for Bitcoin (Section~\ref{sec:design}). Periods start in January 2012 (Bitcoin), August 2015 (Ether) and January 1981 (gold) or later. J.P. Morgan: the arithmetic assumption in its 2027 Long-Term Capital Market Assumptions. CAPM: Treasury yield plus trailing four-year beta times a 4\% equity premium, from August 2014. Other horizons, median misses and numbers of periods: Exhibits~\ref{tab:today} and~\ref{tab:calib}.
@@ -156,7 +157,7 @@ The formula is not ours: it is the growth rate of the power law, already fitted,
 \centering
 \caption{The age rule in real time: the exponent fitted each month, the five-year expected return it forecast at that date, and the return that followed.}
 \label{tab:formula}
-\includegraphics[width=0.95\textwidth]{figs/fig_agerule.pdf}
+\includegraphics[width=0.95\textwidth]{fig_agerule.pdf}
 \par\smallskip
 \begin{minipage}{\textwidth}\footnotesize
 \emph{Notes:} (a) $\beta_t$, the slope of a least-squares fit of log price on log age using monthly data from August 2010 to the month shown; the dotted line is its September 2026 value, 5.62. (b) The age rule's five-year expected return at each date, $(1+5/A_t)^{\beta_t/5}-1$, using that date's exponent; Bitcoin's realized compound annual return over the five years that followed, available to September 2021; and a 10\% comparison rate. The dashed line holds the exponent at 5.62 and shows what the age rule implies as Bitcoin ages, not a forecast: about 27\% a year from 2030, 22\% from 2035 and 18\% from 2040. Averaged over all periods from 2012, the realized return exceeded the age rule's forecast by 1--5 points a year (Exhibit~\ref{fig:main}).
@@ -197,7 +198,7 @@ Ether is the same test applied to a younger asset, and its history is too short 
 \centering
 \caption{The age rule applied to Ether: the exponent fitted each month and the three-year expected return it forecast, against the return that followed.}
 \label{fig:eth}
-\includegraphics[width=0.95\textwidth]{figs/fig_agerule_eth.pdf}
+\includegraphics[width=0.95\textwidth]{fig_agerule_eth.pdf}
 \par\smallskip
 \begin{minipage}{\textwidth}\footnotesize
 \emph{Notes:} As Exhibit~\ref{tab:formula}, for Ether, with age counted from 30 July 2015, the exponent fitted on monthly data from August 2015 to the month shown (first fit August 2018, three years of data), and a three-year horizon, the one used for Ether throughout: the forecast is $(1+3/A_t)^{\beta_t/3}-1$ and the realized return the compound annual return over the three years that followed, available to April 2023. Over the 57 periods the forecast averaged 39\% a year and the realized return 65\%.
