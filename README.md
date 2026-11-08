@@ -1,6 +1,7 @@
 # Bitcoin's Expected Return: An Age Rule That Beats Current Practice
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24004326.svg)](https://doi.org/10.5281/zenodo.24004326)
+[![replication](https://github.com/apapadogiannis/bitcoin-age-rule/actions/workflows/replicate.yml/badge.svg)](https://github.com/apapadogiannis/bitcoin-age-rule/actions/workflows/replicate.yml)
 
 Replication package for the working paper by Agisilaos Papadogiannis (November 2026).
 Paper: `paper/manuscript.pdf`. Archived on Zenodo: [doi:10.5281/zenodo.24004326](https://doi.org/10.5281/zenodo.24004326) (concept DOI, always resolves to the latest version; v1.0 is 10.5281/zenodo.24004327).
@@ -40,7 +41,9 @@ matplotlib, statsmodels, openpyxl).
 ```
 
 The scripts are deterministic (fixed random seeds for the bootstraps); re-running them
-reproduces `outputs/` and `figures/` exactly. Each takes `python3 -I <script>.py DATA_DIR OUT_DIR`.
+reproduces `outputs/` and `figures/` exactly. A GitHub Actions workflow re-runs the
+full pipeline on every push and monthly, and fails if any result table differs from the
+committed one; the badge above shows the latest run. Each takes `python3 -I <script>.py DATA_DIR OUT_DIR`.
 
 | Script | What it produces | Where it appears |
 |---|---|---|

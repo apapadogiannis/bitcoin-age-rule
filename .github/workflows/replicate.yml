@@ -1,0 +1,43 @@
+name: replication
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 6 1 * *"   # first of each month: catches upstream breakage
+
+jobs:
+  replicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Regenerate every table and figure
+        run: ./run_all.sh
+
+      - name: Verify tables match the committed results
+        # Figures and the xlsx embed timestamps; every CSV and LaTeX table must be identical.
+        run: |
+          git diff --exit-code --stat -- 'outputs/*.csv' 'outputs/*.tex' 'outputs/*.txt'
+          echo "All result tables reproduce byte-for-byte."
+
+      - name: Upload regenerated outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regenerated-outputs
+          path: |
+            outputs/
+            figures/
+          retention-days: 30
