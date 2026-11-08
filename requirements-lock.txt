@@ -1,0 +1,9 @@
+# Exact versions under which outputs/ were generated (Python 3.13).
+# Used by the replication workflow; humans can use requirements.txt instead.
+numpy==2.5.3
+pandas==3.0.5
+matplotlib==3.11.2
+statsmodels==0.15.0
+scipy==1.18.1
+patsy==1.0.3
+openpyxl==3.1.5

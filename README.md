@@ -35,6 +35,8 @@ data/       all input data (see Data and licensing)
 
 Requirements: Python 3.11+, `pip install -r requirements.txt` (pandas, numpy,
 matplotlib, statsmodels, openpyxl).
+For byte-identical tables use `requirements-lock.txt` (the exact versions under which
+`outputs/` were generated); other versions can differ in the last printed digit.
 
 ```bash
 ./run_all.sh    # runs every script below in order, about a minute
