@@ -4,7 +4,7 @@
 [![replication](https://github.com/apapadogiannis/bitcoin-age-rule/actions/workflows/replicate.yml/badge.svg)](https://github.com/apapadogiannis/bitcoin-age-rule/actions/workflows/replicate.yml)
 
 Replication package for the working paper by Agisilaos Papadogiannis (November 2026).
-Paper: `paper/manuscript.pdf`. Archived on Zenodo: [doi:10.5281/zenodo.24004326](https://doi.org/10.5281/zenodo.24004326) (concept DOI, always resolves to the latest version; v1.0 is 10.5281/zenodo.24004327).
+Paper: `paper/manuscript.pdf`; SSRN preprint: [https://ssrn.com/abstract=7705438](https://ssrn.com/abstract=7705438). Archived on Zenodo: [doi:10.5281/zenodo.24004326](https://doi.org/10.5281/zenodo.24004326) (concept DOI, always resolves to the latest version; v1.0 is 10.5281/zenodo.24004327).
 
 Companion paper: [Bitcoin's Required Return](https://github.com/apapadogiannis/bitcoin-required-return) ([doi:10.5281/zenodo.24003938](https://doi.org/10.5281/zenodo.24003938)).
 
@@ -87,6 +87,11 @@ committed one; the badge above shows the latest run. Each takes `python3 -I <scr
 ## Citation
 
 > Papadogiannis, A. (2026). "Bitcoin's Expected Return: An Age Rule That Beats Current Practice." Working paper.
+> SSRN: https://ssrn.com/abstract=7705438
+
+Code and data:
+
+> Papadogiannis, A. (2026). "Bitcoin's Expected Return: replication package." Zenodo.
 > https://doi.org/10.5281/zenodo.24004326
 
 ## Disclaimer

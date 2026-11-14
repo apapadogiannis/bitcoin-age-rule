@@ -8,9 +8,25 @@
       "orcid": "0009-0002-7753-7052"
     }
   ],
-  "keywords": ["Bitcoin", "cryptoassets", "expected return", "capital market assumptions", "power law", "age rule", "backtesting", "CAPM", "gold", "Ether"],
+  "keywords": [
+    "Bitcoin",
+    "cryptoassets",
+    "expected return",
+    "capital market assumptions",
+    "power law",
+    "age rule",
+    "backtesting",
+    "CAPM",
+    "gold",
+    "Ether"
+  ],
   "license": "MIT",
   "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://ssrn.com/abstract=7705438",
+      "scheme": "url"
+    },
     {
       "relation": "isSupplementTo",
       "identifier": "https://github.com/apapadogiannis/bitcoin-age-rule",
