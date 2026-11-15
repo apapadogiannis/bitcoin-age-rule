@@ -1,11 +1,12 @@
 # Bitcoin's Expected Return: An Age Rule That Beats Current Practice
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24004326.svg)](https://doi.org/10.5281/zenodo.24004326)
-[![SSRN](https://img.shields.io/badge/SSRN-7705438-1f4e79)](https://ssrn.com/abstract=7705438)
+[![SSRN](https://img.shields.io/badge/SSRN-10.2139%2Fssrn.7705438-1f4e79)](https://doi.org/10.2139/ssrn.7705438)
 [![replication](https://github.com/apapadogiannis/bitcoin-age-rule/actions/workflows/replicate.yml/badge.svg)](https://github.com/apapadogiannis/bitcoin-age-rule/actions/workflows/replicate.yml)
 
 Replication package for the working paper by Agisilaos Papadogiannis (November 2026).
-Paper: `paper/manuscript.pdf`; SSRN preprint: [https://ssrn.com/abstract=7705438](https://ssrn.com/abstract=7705438). Archived on Zenodo: [doi:10.5281/zenodo.24004326](https://doi.org/10.5281/zenodo.24004326) (concept DOI, always resolves to the latest version; v1.0 is 10.5281/zenodo.24004327).
+Paper: `paper/manuscript.pdf`; preprint on SSRN: [doi:10.2139/ssrn.7705438](https://doi.org/10.2139/ssrn.7705438).
+Archived on Zenodo: [doi:10.5281/zenodo.24004326](https://doi.org/10.5281/zenodo.24004326) (concept DOI, always resolves to the latest version; v1.0 is 10.5281/zenodo.24004327).
 
 ## What this is
 
@@ -86,7 +87,7 @@ committed one; the badge above shows the latest run. Each takes `python3 -I <scr
 ## Citation
 
 > Papadogiannis, A. (2026). "Bitcoin's Expected Return: An Age Rule That Beats Current Practice." Working paper.
-> SSRN: https://ssrn.com/abstract=7705438
+> SSRN: https://doi.org/10.2139/ssrn.7705438
 
 Code and data:
 
