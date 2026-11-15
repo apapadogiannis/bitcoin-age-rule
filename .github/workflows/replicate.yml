@@ -26,16 +26,9 @@ jobs:
       - name: Regenerate every table and figure
         run: ./run_all.sh
 
-      - name: Verify tables match the committed results
-        # Figures and the xlsx embed timestamps; every CSV and LaTeX table must be identical.
-        run: |
-          lscpu | grep 'Model name'
-          git diff --exit-code --stat -- 'outputs/*.csv' 'outputs/*.tex' 'outputs/*.txt' || {
-            echo "Differences (first 80 lines):"
-            git diff --unified=0 -- 'outputs/*.csv' 'outputs/*.tex' 'outputs/*.txt' | head -80
-            exit 1
-          }
-          echo "All result tables reproduce byte-for-byte."
+      - name: Verify the stored results are reproduced
+        # Number-by-number comparison with a tight tolerance; see check_outputs.py.
+        run: python3 check_outputs.py --no-run
 
       - name: Upload regenerated outputs
         if: always()

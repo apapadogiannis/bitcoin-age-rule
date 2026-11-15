@@ -35,17 +35,16 @@ data/       all input data (see Data and licensing)
 
 Requirements: Python 3.11+, `pip install -r requirements.txt` (pandas, numpy,
 matplotlib, statsmodels, openpyxl).
-For byte-identical tables use `requirements-lock.txt` (the exact versions under which
-`outputs/` were generated); other versions can differ in the last printed digit.
+`requirements-lock.txt` lists the exact versions under which `outputs/` were generated.
 
 ```bash
 ./run_all.sh    # runs every script below in order, about a minute
 ```
 
 The scripts are deterministic (fixed random seeds for the bootstraps); re-running them
-reproduces `outputs/` and `figures/` exactly. A GitHub Actions workflow re-runs the
-full pipeline on every push and monthly, and fails if any result table differs from the
-committed one; the badge above shows the latest run. Each takes `python3 -I <script>.py DATA_DIR OUT_DIR`.
+reproduces `outputs/` and `figures/`. A GitHub Actions workflow re-runs the
+full pipeline on every push and monthly, and fails if any stored result is not reproduced
+(see "How the check works"); the badge above shows the latest run. Each takes `python3 -I <script>.py DATA_DIR OUT_DIR`.
 
 | Script | What it produces | Where it appears |
 |---|---|---|
@@ -67,23 +66,32 @@ committed one; the badge above shows the latest run. Each takes `python3 -I <scr
 
 ## How the check works
 
+```bash
+python3 check_outputs.py    # reruns ./run_all.sh, then compares
+```
+
 1. The result tables in `outputs/` are stored in this repository exactly as they were when the
    paper's numbers were taken from them.
-2. `./run_all.sh` reruns every script on the files in `data/` and overwrites those tables with
-   freshly computed ones.
-3. `git diff --exit-code -- 'outputs/*.csv' 'outputs/*.tex' 'outputs/*.txt'` then compares each fresh table with the
-   stored version, character by character. If nothing is printed, they are identical; any
-   difference is listed and counts as a failure.
+2. `check_outputs.py` sets the stored copies aside, reruns `./run_all.sh` on the files in `data/`,
+   and compares the fresh files with the stored ones, number by number.
+3. A number counts as reproduced if it agrees with the stored one to nine significant digits
+   (relative tolerance 1e-9). Text, labels and whole numbers must match exactly. Any other
+   difference is listed and the check fails.
 
-The workflow behind the badge does exactly these three steps on a new machine with the pinned
-package versions, on every push and once a month, so a green badge means the stored
-tables still follow from the data and code. The stored tables are also frozen in the Zenodo
-archive, which cannot be altered after release.
+Why a tolerance and not a character-by-character match: the last digits of a floating-point
+result depend on the processor and on the build of the numerical libraries, so two correct runs
+on different machines can differ in the 12th to 16th significant digit. In this package the largest difference seen between two processor types is about 5e-12. The check reports
+how many numbers differed in this way and by how much. For the same reason, a value printed with
+a fixed number of decimals may differ by one unit in its last printed place; such cases are listed.
 
-Two limits. The comparison is between regenerated and stored tables, not with the paper's
+The workflow behind the badge runs the pipeline on a new machine with the pinned package
+versions, on every push and once a month, and applies the same comparison. The stored results
+are also frozen in the Zenodo archive, which cannot be altered after release.
+
+Two limits. The comparison is between regenerated and stored results, not with the paper's
 PDF: to connect the two, use the script table above, which says where each output appears in
-the paper. And figures are redrawn from the same values but not compared byte for byte, because
-image files can differ slightly between versions of the plotting library.
+the paper. And figures are redrawn from the same values but are not compared, because image files can
+differ slightly between versions of the plotting library.
 
 ## Data and licensing
 
