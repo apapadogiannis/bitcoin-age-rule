@@ -1,6 +1,6 @@
 # Bitcoin's Expected Return: An Age Rule That Beats Current Practice
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24004326.svg)](https://doi.org/10.5281/zenodo.24004326)
+[![Zenodo](https://img.shields.io/badge/Zenodo-10.5281%2Fzenodo.24004326-007ec6)](https://doi.org/10.5281/zenodo.24004326)
 [![SSRN](https://img.shields.io/badge/SSRN-10.2139%2Fssrn.7705438-1f4e79)](https://doi.org/10.2139/ssrn.7705438)
 [![replication](https://github.com/apapadogiannis/bitcoin-age-rule/actions/workflows/replicate.yml/badge.svg)](https://github.com/apapadogiannis/bitcoin-age-rule/actions/workflows/replicate.yml)
 
