@@ -1,0 +1,474 @@
+{
+  "package": {
+    "title": "Bitcoin's Expected Return: An Age Rule That Beats Current Practice",
+    "author": {
+      "name": "Agisilaos Papadogiannis",
+      "orcid": "https://orcid.org/0009-0002-7753-7052",
+      "url": "https://github.com/apapadogiannis"
+    },
+    "status": "working paper",
+    "preprint": "https://doi.org/10.2139/ssrn.7705438",
+    "repository": "https://github.com/apapadogiannis/bitcoin-age-rule",
+    "archive": "https://doi.org/10.5281/zenodo.24004326",
+    "version": "1.1.0",
+    "released": "2026-11-21",
+    "data_as_of": "Monthly prices to September 2026 for Bitcoin, gold and the S&P 500; to April 2026 for Ether and the address counts. Data accessed 31 October to 3 November 2026.",
+    "units": "In the result tables, rates, returns and misses are fractions a year (0.32 is 32% a year) and shares are fractions of the periods (0.95 is 95%). The column `today` is in per cent. The headline list converts to per cent and says so.",
+    "licence": {
+      "results": "CC-BY-4.0",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "condition": "Reuse of the results is allowed with credit to the paper.",
+      "code": "MIT",
+      "third_party_data": "The Bitcoin and Ether reference prices and address counts in data/cm_btc.csv and data/cm_eth.csv are from the Coin Metrics community data, licensed CC BY-NC 4.0 (non-commercial use, with attribution). The other inputs are from Bitstamp candles, the World Bank, Robert Shiller's data and FRED. Third-party data keep their own terms and are not covered by the licence above."
+    },
+    "cite_as": "Papadogiannis, A. (2026). Bitcoin's Expected Return: An Age Rule That Beats Current Practice. Working paper. https://doi.org/10.2139/ssrn.7705438",
+    "cite_package": "Papadogiannis, A. (2026). Bitcoin's Expected Return: An Age Rule That Beats Current Practice. Replication package, version 1.1.0. Zenodo. https://doi.org/10.5281/zenodo.24004326",
+    "describe_as": "Papadogiannis (2026), \"Bitcoin's Expected Return: An Age Rule That Beats Current Practice\", working paper, with its replication package.",
+    "guide": "llms.txt"
+  },
+  "headline": [
+    {
+      "what": "Age-rule forecast of Bitcoin's return, September 2026 to September 2031",
+      "value": 32.2,
+      "unit": "per cent a year, compounded over the five years",
+      "where": "Section 4 and Exhibit A2",
+      "source": {
+        "file": "outputs/btc_beta_realtime.csv",
+        "row": {
+          "month": "2026-09"
+        },
+        "column": "h5",
+        "multiplied_by": 100
+      }
+    },
+    {
+      "what": "Bitcoin's power-law exponent, estimated in September 2026",
+      "value": 5.62,
+      "unit": "(a number; the age rule divides it by Bitcoin's age in years)",
+      "where": "Section 4",
+      "source": {
+        "file": "outputs/btc_beta_realtime.csv",
+        "row": {
+          "month": "2026-09"
+        },
+        "column": "beta"
+      }
+    },
+    {
+      "what": "Bitcoin's age in September 2026",
+      "value": 17.7,
+      "unit": "years since January 2009",
+      "where": "Section 4",
+      "source": {
+        "file": "outputs/btc_beta_realtime.csv",
+        "row": {
+          "month": "2026-09"
+        },
+        "column": "age"
+      }
+    },
+    {
+      "what": "Share of five-year periods in which Bitcoin beat a fixed rate of 10% a year",
+      "value": 96,
+      "unit": "per cent of the periods",
+      "where": "Exhibit A2",
+      "source": {
+        "file": "outputs/today_rates_by_horizon.csv",
+        "row": {
+          "method": "Fixed comparison rate 10\\%"
+        },
+        "column": "beat5",
+        "multiplied_by": 100
+      }
+    },
+    {
+      "what": "Share of five-year periods in which Bitcoin beat the age rule's forecast",
+      "value": 42,
+      "unit": "per cent of the periods",
+      "where": "Exhibit A2",
+      "source": {
+        "file": "outputs/today_rates_by_horizon.csv",
+        "row": {
+          "method": "Age rule (power-law trend)"
+        },
+        "column": "beat5",
+        "multiplied_by": 100
+      }
+    },
+    {
+      "what": "Average miss of the age rule over five-year periods",
+      "value": 4.5,
+      "unit": "points a year (realized above the forecast if positive)",
+      "where": "Exhibit A2",
+      "source": {
+        "file": "outputs/today_rates_by_horizon.csv",
+        "row": {
+          "method": "Age rule (power-law trend)"
+        },
+        "column": "avg5",
+        "multiplied_by": 100
+      }
+    },
+    {
+      "what": "Average miss of a fixed 10% rate over five-year periods",
+      "value": 116,
+      "unit": "points a year (realized above the rate if positive)",
+      "where": "Exhibit A2",
+      "source": {
+        "file": "outputs/today_rates_by_horizon.csv",
+        "row": {
+          "method": "Fixed comparison rate 10\\%"
+        },
+        "column": "avg5",
+        "multiplied_by": 100
+      }
+    },
+    {
+      "what": "CAPM required return on Bitcoin, beta over 2012 to 2026, equity premium 4%",
+      "value": 13.5,
+      "unit": "per cent a year",
+      "where": "Section 6",
+      "source": {
+        "file": "outputs/capm_required.csv",
+        "row": {
+          "asset": "Bitcoin",
+          "start": "2012-01"
+        },
+        "column": "req_erp4",
+        "multiplied_by": 100
+      }
+    },
+    {
+      "what": "CAPM required return on Bitcoin, beta over the last four years, equity premium 4%",
+      "value": 6.3,
+      "unit": "per cent a year",
+      "where": "Section 6",
+      "source": {
+        "file": "outputs/capm_required.csv",
+        "row": {
+          "asset": "Bitcoin",
+          "start": "2022-10"
+        },
+        "column": "req_erp4",
+        "multiplied_by": 100
+      }
+    }
+  ],
+  "tables": [
+    {
+      "file": "outputs/calibration_main.csv",
+      "what": "The backtest for Bitcoin and Ether: the record of each rate at horizons of 3, 4 and 5 years. The age rule appears here as \"Power-law trend, fitted to date\".",
+      "rows": 24,
+      "columns": {
+        "asset": "BTC or ETH",
+        "h": "horizon in years",
+        "rate": "the way of setting the expected return",
+        "n": "number of rolling periods",
+        "median": "median across periods of the annual miss, a fraction",
+        "avg": "average across periods of the growth ratio over the horizon, annualised, less one",
+        "avg_trim": "the same leaving out the largest 5% of the ratios",
+        "mad": "average absolute annual miss",
+        "beat": "share of periods in which the realized return exceeded the rate"
+      }
+    },
+    {
+      "file": "outputs/today_rates_by_horizon.csv",
+      "what": "What each method sets as Bitcoin's rate in September 2026, beside its record at 3, 4 and 5 years.",
+      "rows": 13,
+      "columns": {
+        "method": "the way of setting the expected return",
+        "today": "the rate it gives in September 2026, in per cent (text; a range where it differs by horizon)",
+        "avg3": "average miss at 3 years, as `avg` above",
+        "med3": "median annual miss at 3 years",
+        "beat3": "share of 3-year periods in which the rate was beaten",
+        "avg4": "average miss at 4 years",
+        "med4": "median annual miss at 4 years",
+        "beat4": "share of 4-year periods in which the rate was beaten",
+        "avg5": "average miss at 5 years",
+        "med5": "median annual miss at 5 years",
+        "beat5": "share of 5-year periods in which the rate was beaten"
+      }
+    },
+    {
+      "file": "outputs/today_rates.csv",
+      "what": "The same record as ranges across the three horizons, as printed in the paper's table.",
+      "rows": 11,
+      "column_names": [
+        "method",
+        "today",
+        "beat_lo",
+        "beat_hi",
+        "med_lo",
+        "med_hi",
+        "avg_lo",
+        "avg_hi"
+      ]
+    },
+    {
+      "file": "outputs/btc_beta_realtime.csv",
+      "what": "The age rule month by month from August 2013: the exponent estimated from data to that month and the rates it implies.",
+      "rows": 158,
+      "columns": {
+        "month": "the month, YYYY-MM",
+        "age": "Bitcoin's age in years",
+        "beta": "the power-law exponent estimated from data to that month",
+        "inst": "the instantaneous yearly rate, exp(beta / age) - 1",
+        "h5": "the yearly rate over the next five years, (1 + 5 / age)^(beta / 5) - 1",
+        "h3": "the yearly rate over the next three years, (1 + 3 / age)^(beta / 3) - 1"
+      }
+    },
+    {
+      "file": "outputs/fig_agerule.csv",
+      "what": "Exhibit 2: the exponent, the five-year forecast and the five-year return that followed, by month.",
+      "rows": 194,
+      "columns": {
+        "month": "the month, YYYY-MM",
+        "age": "Bitcoin's age in years",
+        "beta": "the exponent estimated from data to that month; empty before there is enough data",
+        "agerule_5y": "the age rule's yearly rate for the next five years",
+        "realized_5y": "the yearly return over the five years that followed; empty where they have not passed",
+        "cagr_since_2012": "Bitcoin's compound annual return from January 2012 to that month"
+      }
+    },
+    {
+      "file": "outputs/expected_return_bands.csv",
+      "what": "Average miss of each rate with 95% bands from a stationary block bootstrap, for Bitcoin, Ether and gold.",
+      "rows": 54,
+      "columns": {
+        "asset": "BTC, ETH or Gold",
+        "sample_from": "first start month of the periods",
+        "h": "horizon in years",
+        "rate": "the way of setting the expected return",
+        "n": "number of rolling periods",
+        "avg": "average miss, as in calibration_main.csv",
+        "lo": "lower end of the 95% band, mean block length 12h months",
+        "hi": "upper end of that band",
+        "lo_L2": "lower end with mean block length 24h months, as a check",
+        "hi_L2": "upper end with that block length",
+        "median": "median annual miss",
+        "beat": "share of periods in which the rate was beaten",
+        "mad": "average absolute annual miss",
+        "rate_now": "the rate the method gives at the end of the sample, a fraction a year"
+      }
+    },
+    {
+      "file": "outputs/capm_required.csv",
+      "what": "CAPM required returns for Bitcoin, Ether and gold, by sample.",
+      "rows": 9,
+      "columns": {
+        "asset": "the asset",
+        "start": "first month of the sample",
+        "end": "last month of the sample",
+        "beta": "beta of monthly returns on the S&P 500 total-return index",
+        "lo": "lower end of the 95% interval of beta, Newey-West standard errors",
+        "hi": "upper end of that interval",
+        "corr": "correlation with the S&P 500",
+        "n": "number of months",
+        "rf": "the ten-year Treasury yield at the end of the sample, a fraction",
+        "req_erp4": "required return with an equity premium of 4%: rf + beta x 0.04",
+        "req_erp6": "the same with an equity premium of 6%",
+        "req_erp4_lo": "with the lower end of beta and a premium of 4%",
+        "req_erp6_hi": "with the upper end of beta and a premium of 6%"
+      }
+    },
+    {
+      "file": "outputs/post_publication.csv",
+      "what": "The record of the age rule and the alternatives in periods beginning January 2020 or later, after the power law was published.",
+      "rows": 15,
+      "columns": {
+        "h": "horizon in years",
+        "rate": "the way of setting the expected return",
+        "n": "number of rolling periods",
+        "avg": "average miss",
+        "median": "median annual miss",
+        "beat": "share of periods in which the rate was beaten",
+        "mad": "average absolute annual miss"
+      }
+    },
+    {
+      "file": "outputs/calibration_gold.csv",
+      "what": "The same backtest for gold, with samples from 1981 and from 2012.",
+      "rows": 36,
+      "column_names": [
+        "asset",
+        "sample_from",
+        "h",
+        "rate",
+        "n",
+        "median",
+        "avg",
+        "avg_trim",
+        "mad",
+        "beat"
+      ]
+    },
+    {
+      "file": "outputs/ether_record.csv",
+      "what": "The record of every rule for Ether at horizons of 3 to 5 years.",
+      "rows": 33,
+      "column_names": [
+        "rate",
+        "h",
+        "n",
+        "avg",
+        "med",
+        "beat",
+        "mad"
+      ]
+    },
+    {
+      "file": "outputs/volatility_benchmark.csv",
+      "what": "Volatility of each asset, and the share of periods in which a correctly set expected return would be beaten under lognormal returns.",
+      "rows": 5,
+      "column_names": [
+        "series",
+        "sigma",
+        "beat_h3",
+        "beat_h5",
+        "mean_over_median_pa"
+      ]
+    },
+    {
+      "file": "outputs/calibration_window_sensitivity.csv",
+      "what": "The backtest with the trend fitted over other windows.",
+      "rows": 12,
+      "column_names": [
+        "asset",
+        "h",
+        "rate",
+        "n",
+        "median",
+        "avg",
+        "avg_trim",
+        "mad",
+        "beat"
+      ]
+    },
+    {
+      "file": "outputs/strategy_table.csv",
+      "what": "How often the verdict on a rate changes with the comparison rate used, by baseline.",
+      "rows": 39,
+      "column_names": [
+        "asset",
+        "h",
+        "baseline",
+        "n",
+        "dis10",
+        "dis_min",
+        "dis_max",
+        "optimistic"
+      ]
+    },
+    {
+      "file": "outputs/robust_grid.csv",
+      "what": "The same across starting points and sub-samples.",
+      "rows": 168,
+      "column_names": [
+        "asset",
+        "h",
+        "baseline",
+        "subsample",
+        "dis_7%",
+        "n",
+        "dis_10%",
+        "self_says_optimistic",
+        "n_10",
+        "dis_12%",
+        "dis_gold 10y",
+        "dis_S&P 10y"
+      ]
+    },
+    {
+      "file": "outputs/anchor_flip_results.csv",
+      "what": "How often the outcome flips across comparison rates, by asset and horizon.",
+      "rows": 14,
+      "column_names": [
+        "asset",
+        "h",
+        "windows",
+        "first",
+        "last",
+        "indep_approx",
+        "med_cagr",
+        "p10",
+        "p90",
+        "pess_7",
+        "pess_10",
+        "pess_12",
+        "flip_fixed",
+        "anchor_range_lnK",
+        "lnK_sd",
+        "anchor_to_sd",
+        "flip_tv",
+        "tv_band_width",
+        "self_windows",
+        "self_c_median",
+        "self_vs_ext10_disagree",
+        "self_pess_share",
+        "self4_vs_ext10_disagree"
+      ]
+    },
+    {
+      "file": "outputs/adoption_results.csv",
+      "what": "Price, age and adoption: regression, stationarity and cointegration tests, by starting date.",
+      "rows": 3,
+      "column_names": [
+        "start",
+        "n",
+        "beta",
+        "r2",
+        "adf_p",
+        "adf_stat",
+        "kpss_p",
+        "halflife",
+        "holders_b",
+        "holders_b_lo",
+        "holders_b_hi",
+        "holders_adf_p",
+        "holders_d",
+        "holders_d_lo",
+        "holders_d_hi",
+        "holders_eg_p",
+        "holders_bd",
+        "active_b",
+        "active_b_lo",
+        "active_b_hi",
+        "active_adf_p",
+        "active_d",
+        "active_d_lo",
+        "active_d_hi",
+        "active_eg_p",
+        "active_bd"
+      ]
+    },
+    {
+      "file": "outputs/fig_main.csv",
+      "what": "The numbers behind Exhibit 1.",
+      "rows": 24,
+      "column_names": [
+        "rate",
+        "today",
+        "n",
+        "avg",
+        "lo",
+        "hi",
+        "med",
+        "beat",
+        "asset",
+        "h"
+      ]
+    },
+    {
+      "file": "outputs/fig_agerule_eth.csv",
+      "what": "Exhibit 3: the age rule for Ether, with a three-year horizon.",
+      "rows": 129,
+      "column_names": [
+        "month",
+        "age",
+        "beta",
+        "agerule_3y",
+        "realized_3y"
+      ]
+    }
+  ]
+}

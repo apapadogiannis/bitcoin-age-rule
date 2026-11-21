@@ -7,6 +7,17 @@
 Replication package for the working paper by Agisilaos Papadogiannis (November 2026).
 Paper: `paper/manuscript.pdf`; preprint on SSRN: [doi:10.2139/ssrn.7705438](https://doi.org/10.2139/ssrn.7705438).
 Archived on Zenodo: [doi:10.5281/zenodo.24004326](https://doi.org/10.5281/zenodo.24004326) (concept DOI, always resolves to the latest version; v1.0 is 10.5281/zenodo.24004327).
+Current version of the package: 1.1.0, which adds `outputs/results.json` and `llms.txt`. No result has changed.
+
+## For AI agents and programs
+
+Read [`llms.txt`](llms.txt) first. It says what the package holds, what it adds over reading the
+paper or recomputing, how to read the figures and what not to use them for. It opens with the
+headline figures. [`outputs/results.json`](outputs/results.json) holds the same headline figures,
+each with the table cell it is read from, a description of the result tables and their columns, and
+the paper, the identifiers, the version, the licence and the citation under its `package` key. Both
+files are written by `scripts/make_guide.py` from `CITATION.cff`, `guide.toml` and the stored tables,
+and both are covered by the check.
 
 ## What this is
 
@@ -25,7 +36,8 @@ control and Ether as a younger comparison:
 
 ```
 scripts/    one script per exhibit or calculation (see below)
-outputs/    all result tables used in the paper (CSV, LaTeX table bodies)
+outputs/    all result tables used in the paper (CSV, LaTeX table bodies); results.json describes them
+llms.txt    guide for AI agents and programs, generated; guide.toml holds its statements about this package
 figures/    all paper exhibits
 paper/      the manuscript PDF and LaTeX source
 data/       all input data (see Data and licensing)
@@ -62,12 +74,13 @@ full pipeline on every push and monthly, and fails if any stored result is not r
 | `adoption.py` | Price, age and adoption: stationarity and cointegration tests | Exhibit A4 |
 | `post_publication.py` | Periods beginning after the power law was published | Exhibit A5 |
 | `ether_gold_today.py` | Ether and gold rates today | Section 7 |
+| `make_guide.py` | `outputs/results.json` (headline figures, description of the tables, package header) and `llms.txt` | not in the paper |
 | `make_btc_monthly.py` | Builds `data/btc_monthly.csv` from the raw Bitstamp candles | Appendix A.1 |
 
 ## How the check works
 
 ```bash
-python3 check_outputs.py    # reruns ./run_all.sh, then compares
+python3 check_outputs.py --also llms.txt    # reruns ./run_all.sh, then compares
 ```
 
 1. The result tables in `outputs/` are stored in this repository exactly as they were when the

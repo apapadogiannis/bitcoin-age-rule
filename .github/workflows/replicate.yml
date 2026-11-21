@@ -28,7 +28,7 @@ jobs:
 
       - name: Verify the stored results are reproduced
         # Number-by-number comparison with a tight tolerance; see check_outputs.py.
-        run: python3 check_outputs.py --no-run
+        run: python3 check_outputs.py --no-run --also llms.txt
 
       - name: Upload regenerated outputs
         if: always()

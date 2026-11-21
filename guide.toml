@@ -1,0 +1,279 @@
+# The statements of llms.txt and of outputs/results.json that are specific to this package.
+# scripts/make_guide.py combines them with CITATION.cff and the stored result tables. No result of
+# the paper is written here: every headline figure names the table cell it is read from.
+
+ssrn = "10.2139/ssrn.7705438"
+data_as_of = "Monthly prices to September 2026 for Bitcoin, gold and the S&P 500; to April 2026 for Ether and the address counts. Data accessed 31 October to 3 November 2026."
+units = "In the result tables, rates, returns and misses are fractions a year (0.32 is 32% a year) and shares are fractions of the periods (0.95 is 95%). The column `today` is in per cent. The headline list converts to per cent and says so."
+describe_as = "Papadogiannis (2026), \"Bitcoin's Expected Return: An Age Rule That Beats Current Practice\", working paper, with its replication package."
+what = "Code, data and stored results of a working paper that tests the ways practitioners set Bitcoin's long-run expected return against the returns that followed, over rolling three- to five-year periods since 2012, with gold as a control and Ether as a younger comparison. It finds that fixed rates and trailing averages fail, and that an age rule, the power-law exponent divided by Bitcoin's age, comes closest. The manuscript is in paper/."
+third_party = "The Bitcoin and Ether reference prices and address counts in data/cm_btc.csv and data/cm_eth.csv are from the Coin Metrics community data, licensed CC BY-NC 4.0 (non-commercial use, with attribution). The other inputs are from Bitstamp candles, the World Bank, Robert Shiller's data and FRED. Third-party data keep their own terms and are not covered by the licence above."
+results_file = "a `headline` list with the figures most often asked for, each with the table cell it comes from, and `tables`, a description of the stored result tables and their columns. The numbers themselves are in the CSV files."
+
+coverage = [
+  "The backtest: for each way of setting Bitcoin's expected return and each horizon of 3, 4 and 5 years, how far the rate missed the return that followed, in every rolling period from January 2012.",
+  "The age rule in real time: the power-law exponent re-estimated every month from the data available then, the forecast it implied and the return that followed.",
+  "What each method implies in September 2026, beside its record.",
+  "A CAPM required return for Bitcoin, Ether and gold over several samples.",
+  "The same backtest for gold since 1981 and for Ether; periods beginning after the power law was published; robustness to the starting point, the comparison rate and the estimation window.",
+]
+adds = [
+  "Every rate is set in real time: from data available at the start of each period only. The exponent, the trailing averages and the trend fits are all re-estimated month by month, which a table of full-sample estimates would not show.",
+  "Two tests are reported for each rate, because they can disagree for a volatile asset: the average of the realized-to-forecast growth ratio, annualised, and the median with the share of periods in which the rate was beaten.",
+  "Rolling periods overlap, so ordinary standard errors are too small. outputs/expected_return_bands.csv gives 95% bands from a stationary block bootstrap.",
+  "The Bitcoin price series is built from one-minute exchange candles to a month-end close, and the file is stored, so the series does not depend on a vendor's later revisions.",
+]
+files = [
+  "outputs/tab_*.tex: the bodies of the paper's tables as printed, with their rounding.",
+  "figures/: the paper's exhibits.",
+  "paper/manuscript.pdf: the working paper.",
+  "data/: all inputs; the README lists the source of each.",
+]
+read = [
+  "Units: in the tables, rates and misses are fractions a year and shares are fractions of the periods. The column `today` is in per cent and is text: where a method gives different rates for the three horizons it holds a range such as 32--34.",
+  "A miss is the realized annual return relative to the rate: (1 + realized) / (1 + rate) - 1. Positive means Bitcoin returned more than the rate said. `beat` is the share of periods in which it did. A well-set expected return has an average miss near zero.",
+  "`avg` is the average across periods of the growth ratio over the whole horizon, annualised; `median` is the median of the annual miss. For a volatile asset the average sits well above the median, so a correct expected return is beaten in fewer than half of the periods. outputs/volatility_benchmark.csv gives that share under lognormal returns.",
+  "Periods are rolling and monthly, so neighbours share most of their months. `n` counts periods, not independent observations: 141 three-year periods are about five independent ones.",
+  "The age rule's forecast is an expected return in the paper's sense, a trend extrapolation, not a required return. The paper sets it beside a CAPM required return; they are different quantities.",
+  "The forecast depends on the horizon: `h5` and `h3` in outputs/btc_beta_realtime.csv are the yearly rates over five and three years, `inst` the instantaneous one, all falling as Bitcoin ages.",
+  "Labels in the `rate` and `method` columns are written for LaTeX: a per cent sign appears as \\% and an ampersand as \\&.",
+]
+not_for = [
+  "A forecast to act on. The age rule is the best of the rules tested on past data; the paper states what could break it.",
+  "Anything after September 2026. The package is a fixed record and is not updated.",
+  "A required return on Bitcoin. For that, see the author's paper \"Bitcoin's Required Return\" (https://github.com/apapadogiannis/bitcoin-required-return) and its live tool.",
+  "Commercial reuse of the Coin Metrics files.",
+]
+
+[[headline]]
+what = "Age-rule forecast of Bitcoin's return, September 2026 to September 2031"
+file = "btc_beta_realtime.csv"
+row = { month = "2026-09" }
+column = "h5"
+scale = 100
+decimals = 1
+unit = "per cent a year, compounded over the five years"
+where = "Section 4 and Exhibit A2"
+
+[[headline]]
+what = "Bitcoin's power-law exponent, estimated in September 2026"
+file = "btc_beta_realtime.csv"
+row = { month = "2026-09" }
+column = "beta"
+decimals = 2
+unit = "(a number; the age rule divides it by Bitcoin's age in years)"
+where = "Section 4"
+
+[[headline]]
+what = "Bitcoin's age in September 2026"
+file = "btc_beta_realtime.csv"
+row = { month = "2026-09" }
+column = "age"
+decimals = 1
+unit = "years since January 2009"
+where = "Section 4"
+
+[[headline]]
+what = "Share of five-year periods in which Bitcoin beat a fixed rate of 10% a year"
+file = "today_rates_by_horizon.csv"
+row = { method = 'Fixed comparison rate 10\%' }
+column = "beat5"
+scale = 100
+decimals = 0
+unit = "per cent of the periods"
+where = "Exhibit A2"
+
+[[headline]]
+what = "Share of five-year periods in which Bitcoin beat the age rule's forecast"
+file = "today_rates_by_horizon.csv"
+row = { method = "Age rule (power-law trend)" }
+column = "beat5"
+scale = 100
+decimals = 0
+unit = "per cent of the periods"
+where = "Exhibit A2"
+
+[[headline]]
+what = "Average miss of the age rule over five-year periods"
+file = "today_rates_by_horizon.csv"
+row = { method = "Age rule (power-law trend)" }
+column = "avg5"
+scale = 100
+decimals = 1
+unit = "points a year (realized above the forecast if positive)"
+where = "Exhibit A2"
+
+[[headline]]
+what = "Average miss of a fixed 10% rate over five-year periods"
+file = "today_rates_by_horizon.csv"
+row = { method = 'Fixed comparison rate 10\%' }
+column = "avg5"
+scale = 100
+decimals = 0
+unit = "points a year (realized above the rate if positive)"
+where = "Exhibit A2"
+
+[[headline]]
+what = "CAPM required return on Bitcoin, beta over 2012 to 2026, equity premium 4%"
+file = "capm_required.csv"
+row = { asset = "Bitcoin", start = "2012-01" }
+column = "req_erp4"
+scale = 100
+decimals = 1
+unit = "per cent a year"
+where = "Section 6"
+
+[[headline]]
+what = "CAPM required return on Bitcoin, beta over the last four years, equity premium 4%"
+file = "capm_required.csv"
+row = { asset = "Bitcoin", start = "2022-10" }
+column = "req_erp4"
+scale = 100
+decimals = 1
+unit = "per cent a year"
+where = "Section 6"
+
+[[table]]
+file = "calibration_main.csv"
+what = "The backtest for Bitcoin and Ether: the record of each rate at horizons of 3, 4 and 5 years. The age rule appears here as \"Power-law trend, fitted to date\"."
+[table.columns]
+asset = "BTC or ETH"
+h = "horizon in years"
+rate = "the way of setting the expected return"
+n = "number of rolling periods"
+median = "median across periods of the annual miss, a fraction"
+avg = "average across periods of the growth ratio over the horizon, annualised, less one"
+avg_trim = "the same leaving out the largest 5% of the ratios"
+mad = "average absolute annual miss"
+beat = "share of periods in which the realized return exceeded the rate"
+
+[[table]]
+file = "today_rates_by_horizon.csv"
+what = "What each method sets as Bitcoin's rate in September 2026, beside its record at 3, 4 and 5 years."
+[table.columns]
+method = "the way of setting the expected return"
+today = "the rate it gives in September 2026, in per cent (text; a range where it differs by horizon)"
+avg3 = "average miss at 3 years, as `avg` above"
+med3 = "median annual miss at 3 years"
+beat3 = "share of 3-year periods in which the rate was beaten"
+avg4 = "average miss at 4 years"
+med4 = "median annual miss at 4 years"
+beat4 = "share of 4-year periods in which the rate was beaten"
+avg5 = "average miss at 5 years"
+med5 = "median annual miss at 5 years"
+beat5 = "share of 5-year periods in which the rate was beaten"
+
+[[table]]
+file = "today_rates.csv"
+what = "The same record as ranges across the three horizons, as printed in the paper's table."
+
+[[table]]
+file = "btc_beta_realtime.csv"
+what = "The age rule month by month from August 2013: the exponent estimated from data to that month and the rates it implies."
+[table.columns]
+month = "the month, YYYY-MM"
+age = "Bitcoin's age in years"
+beta = "the power-law exponent estimated from data to that month"
+inst = "the instantaneous yearly rate, exp(beta / age) - 1"
+h5 = "the yearly rate over the next five years, (1 + 5 / age)^(beta / 5) - 1"
+h3 = "the yearly rate over the next three years, (1 + 3 / age)^(beta / 3) - 1"
+
+[[table]]
+file = "fig_agerule.csv"
+what = "Exhibit 2: the exponent, the five-year forecast and the five-year return that followed, by month."
+[table.columns]
+month = "the month, YYYY-MM"
+age = "Bitcoin's age in years"
+beta = "the exponent estimated from data to that month; empty before there is enough data"
+agerule_5y = "the age rule's yearly rate for the next five years"
+realized_5y = "the yearly return over the five years that followed; empty where they have not passed"
+cagr_since_2012 = "Bitcoin's compound annual return from January 2012 to that month"
+
+[[table]]
+file = "expected_return_bands.csv"
+what = "Average miss of each rate with 95% bands from a stationary block bootstrap, for Bitcoin, Ether and gold."
+[table.columns]
+asset = "BTC, ETH or Gold"
+sample_from = "first start month of the periods"
+h = "horizon in years"
+rate = "the way of setting the expected return"
+n = "number of rolling periods"
+avg = "average miss, as in calibration_main.csv"
+lo = "lower end of the 95% band, mean block length 12h months"
+hi = "upper end of that band"
+lo_L2 = "lower end with mean block length 24h months, as a check"
+hi_L2 = "upper end with that block length"
+median = "median annual miss"
+beat = "share of periods in which the rate was beaten"
+mad = "average absolute annual miss"
+rate_now = "the rate the method gives at the end of the sample, a fraction a year"
+
+[[table]]
+file = "capm_required.csv"
+what = "CAPM required returns for Bitcoin, Ether and gold, by sample."
+[table.columns]
+asset = "the asset"
+start = "first month of the sample"
+end = "last month of the sample"
+beta = "beta of monthly returns on the S&P 500 total-return index"
+lo = "lower end of the 95% interval of beta, Newey-West standard errors"
+hi = "upper end of that interval"
+corr = "correlation with the S&P 500"
+n = "number of months"
+rf = "the ten-year Treasury yield at the end of the sample, a fraction"
+req_erp4 = "required return with an equity premium of 4%: rf + beta x 0.04"
+req_erp6 = "the same with an equity premium of 6%"
+req_erp4_lo = "with the lower end of beta and a premium of 4%"
+req_erp6_hi = "with the upper end of beta and a premium of 6%"
+
+[[table]]
+file = "post_publication.csv"
+what = "The record of the age rule and the alternatives in periods beginning January 2020 or later, after the power law was published."
+[table.columns]
+h = "horizon in years"
+rate = "the way of setting the expected return"
+n = "number of rolling periods"
+avg = "average miss"
+median = "median annual miss"
+beat = "share of periods in which the rate was beaten"
+mad = "average absolute annual miss"
+
+[[table]]
+file = "calibration_gold.csv"
+what = "The same backtest for gold, with samples from 1981 and from 2012."
+
+[[table]]
+file = "ether_record.csv"
+what = "The record of every rule for Ether at horizons of 3 to 5 years."
+
+[[table]]
+file = "volatility_benchmark.csv"
+what = "Volatility of each asset, and the share of periods in which a correctly set expected return would be beaten under lognormal returns."
+
+[[table]]
+file = "calibration_window_sensitivity.csv"
+what = "The backtest with the trend fitted over other windows."
+
+[[table]]
+file = "strategy_table.csv"
+what = "How often the verdict on a rate changes with the comparison rate used, by baseline."
+
+[[table]]
+file = "robust_grid.csv"
+what = "The same across starting points and sub-samples."
+
+[[table]]
+file = "anchor_flip_results.csv"
+what = "How often the outcome flips across comparison rates, by asset and horizon."
+
+[[table]]
+file = "adoption_results.csv"
+what = "Price, age and adoption: regression, stationarity and cointegration tests, by starting date."
+
+[[table]]
+file = "fig_main.csv"
+what = "The numbers behind Exhibit 1."
+
+[[table]]
+file = "fig_agerule_eth.csv"
+what = "Exhibit 3: the age rule for Ether, with a three-year horizon."
