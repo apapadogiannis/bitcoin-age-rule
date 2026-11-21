@@ -98,7 +98,7 @@
     {
       "what": "Average miss of the age rule over five-year periods",
       "value": 4.5,
-      "unit": "points a year (realized above the forecast if positive)",
+      "unit": "per cent a year, as (1 + realized) / (1 + forecast) - 1, positive if the realized return was higher",
       "where": "Exhibit A2",
       "source": {
         "file": "outputs/today_rates_by_horizon.csv",
@@ -112,7 +112,7 @@
     {
       "what": "Average miss of a fixed 10% rate over five-year periods",
       "value": 116,
-      "unit": "points a year (realized above the rate if positive)",
+      "unit": "per cent a year, as (1 + realized) / (1 + rate) - 1, positive if the realized return was higher",
       "where": "Exhibit A2",
       "source": {
         "file": "outputs/today_rates_by_horizon.csv",
@@ -248,7 +248,7 @@
         "median": "median annual miss",
         "beat": "share of periods in which the rate was beaten",
         "mad": "average absolute annual miss",
-        "rate_now": "the rate the method gives at the end of the sample, a fraction a year"
+        "rate_now": "the last value of the rate in the series used for the backtest, a fraction a year; not necessarily the rate today"
       }
     },
     {
@@ -320,13 +320,13 @@
       "file": "outputs/volatility_benchmark.csv",
       "what": "Volatility of each asset, and the share of periods in which a correctly set expected return would be beaten under lognormal returns.",
       "rows": 5,
-      "column_names": [
-        "series",
-        "sigma",
-        "beat_h3",
-        "beat_h5",
-        "mean_over_median_pa"
-      ]
+      "columns": {
+        "series": "the asset or sample",
+        "sigma": "annualised volatility of monthly log returns, a fraction",
+        "beat_h3": "share of 3-year periods in which a correctly set expected return would be beaten",
+        "beat_h5": "the same for 5-year periods",
+        "mean_over_median_pa": "how far the mean yearly return lies above the median, a fraction a year"
+      }
     },
     {
       "file": "outputs/calibration_window_sensitivity.csv",

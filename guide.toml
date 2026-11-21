@@ -30,6 +30,11 @@ files = [
   "data/: all inputs; the README lists the source of each.",
 ]
 read = [
+  "The age rule in one line: the log return a year is the exponent divided by the age. Over a horizon of h years the yearly rate is (1 + h / age)^(exponent / h) - 1; the five-year figure in the headline list is computed this way from the unrounded exponent and age.",
+  "The rules were tested on different numbers of periods, because some need earlier data before they can be computed: the column `n` in outputs/calibration_main.csv gives the number for each. Compare shares across rules with that in mind.",
+  "The number of independent periods is far smaller than `n`: outputs/anchor_flip_results.csv gives an approximate count in its column `indep_approx`, the number of months divided by the months in a horizon, plus one.",
+  "The same rule carries slightly different labels in different tables: the age rule is \"Age rule (power-law trend)\", \"Power-law trend, fitted to date\" or \"Power-law trend\"; the fixed rate of 10% is \"Fixed comparison rate 10\\%\", \"Comparison rate: 10\\%\" or \"Comparison: 10\\%\".",
+  "For the rate a method gives today use the column `today` of outputs/today_rates_by_horizon.csv. The column `rate_now` of outputs/expected_return_bands.csv is the last value in the series used for the backtest, which for some rules is the start of the last complete period and not September 2026.",
   "Units: in the tables, rates and misses are fractions a year and shares are fractions of the periods. The column `today` is in per cent and is text: where a method gives different rates for the three horizons it holds a range such as 32--34.",
   "A miss is the realized annual return relative to the rate: (1 + realized) / (1 + rate) - 1. Positive means Bitcoin returned more than the rate said. `beat` is the share of periods in which it did. A well-set expected return has an average miss near zero.",
   "`avg` is the average across periods of the growth ratio over the whole horizon, annualised; `median` is the median of the annual miss. For a volatile asset the average sits well above the median, so a correct expected return is beaten in fewer than half of the periods. outputs/volatility_benchmark.csv gives that share under lognormal returns.",
@@ -100,7 +105,7 @@ row = { method = "Age rule (power-law trend)" }
 column = "avg5"
 scale = 100
 decimals = 1
-unit = "points a year (realized above the forecast if positive)"
+unit = "per cent a year, as (1 + realized) / (1 + forecast) - 1, positive if the realized return was higher"
 where = "Exhibit A2"
 
 [[headline]]
@@ -110,7 +115,7 @@ row = { method = 'Fixed comparison rate 10\%' }
 column = "avg5"
 scale = 100
 decimals = 0
-unit = "points a year (realized above the rate if positive)"
+unit = "per cent a year, as (1 + realized) / (1 + rate) - 1, positive if the realized return was higher"
 where = "Exhibit A2"
 
 [[headline]]
@@ -206,7 +211,7 @@ hi_L2 = "upper end with that block length"
 median = "median annual miss"
 beat = "share of periods in which the rate was beaten"
 mad = "average absolute annual miss"
-rate_now = "the rate the method gives at the end of the sample, a fraction a year"
+rate_now = "the last value of the rate in the series used for the backtest, a fraction a year; not necessarily the rate today"
 
 [[table]]
 file = "capm_required.csv"
@@ -249,6 +254,12 @@ what = "The record of every rule for Ether at horizons of 3 to 5 years."
 [[table]]
 file = "volatility_benchmark.csv"
 what = "Volatility of each asset, and the share of periods in which a correctly set expected return would be beaten under lognormal returns."
+[table.columns]
+series = "the asset or sample"
+sigma = "annualised volatility of monthly log returns, a fraction"
+beat_h3 = "share of 3-year periods in which a correctly set expected return would be beaten"
+beat_h5 = "the same for 5-year periods"
+mean_over_median_pa = "how far the mean yearly return lies above the median, a fraction a year"
 
 [[table]]
 file = "calibration_window_sensitivity.csv"

@@ -38,10 +38,10 @@ Each is read from one cell of a stored result table, named in outputs/results.js
   periods. Exhibit A2.
 - Share of five-year periods in which Bitcoin beat the age rule's forecast: 42 per cent of the
   periods. Exhibit A2.
-- Average miss of the age rule over five-year periods: 4.5 points a year (realized above the
-  forecast if positive). Exhibit A2.
-- Average miss of a fixed 10% rate over five-year periods: 116 points a year (realized above the
-  rate if positive). Exhibit A2.
+- Average miss of the age rule over five-year periods: 4.5 per cent a year, as (1 + realized) / (1
+  + forecast) - 1, positive if the realized return was higher. Exhibit A2.
+- Average miss of a fixed 10% rate over five-year periods: 116 per cent a year, as (1 + realized) /
+  (1 + rate) - 1, positive if the realized return was higher. Exhibit A2.
 - CAPM required return on Bitcoin, beta over 2012 to 2026, equity premium 4%: 13.5 per cent a year.
   Section 6.
 - CAPM required return on Bitcoin, beta over the last four years, equity premium 4%: 6.3 per cent a
@@ -119,6 +119,22 @@ Raw files: https://raw.githubusercontent.com/apapadogiannis/bitcoin-age-rule/mai
 
 ## How to read the figures
 
+- The age rule in one line: the log return a year is the exponent divided by the age. Over a
+  horizon of h years the yearly rate is (1 + h / age)^(exponent / h) - 1; the five-year figure in
+  the headline list is computed this way from the unrounded exponent and age.
+- The rules were tested on different numbers of periods, because some need earlier data before they
+  can be computed: the column `n` in outputs/calibration_main.csv gives the number for each.
+  Compare shares across rules with that in mind.
+- The number of independent periods is far smaller than `n`: outputs/anchor_flip_results.csv gives
+  an approximate count in its column `indep_approx`, the number of months divided by the months in
+  a horizon, plus one.
+- The same rule carries slightly different labels in different tables: the age rule is "Age rule
+  (power-law trend)", "Power-law trend, fitted to date" or "Power-law trend"; the fixed rate of 10%
+  is "Fixed comparison rate 10\%", "Comparison rate: 10\%" or "Comparison: 10\%".
+- For the rate a method gives today use the column `today` of outputs/today_rates_by_horizon.csv.
+  The column `rate_now` of outputs/expected_return_bands.csv is the last value in the series used
+  for the backtest, which for some rules is the start of the last complete period and not September
+  2026.
 - Units: in the tables, rates and misses are fractions a year and shares are fractions of the
   periods. The column `today` is in per cent and is text: where a method gives different rates for
   the three horizons it holds a range such as 32--34.
