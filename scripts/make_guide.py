@@ -142,15 +142,17 @@ def main():
     published = "volume" in paper                      # printed, with volume and pages
     forthcoming = "journal" in paper and not published   # accepted, not yet printed
     if forthcoming:
-        cite = (f"Papadogiannis, A. ({paper['year']}). {title}. {paper['journal']}, forthcoming. "
-                f"https://doi.org/{g['ssrn']}")
-        article = {"journal": paper["journal"], "year": int(paper["year"]), "status": "forthcoming"}
+        year = paper.get("year", "forthcoming")
+        cite = f"Papadogiannis, A. ({year}). {title}. {paper['journal']}, forthcoming. https://doi.org/{g['ssrn']}"
+        article = {"journal": paper["journal"], "status": "forthcoming", **({"year": int(year)} if "year" in paper else {})}
     elif published:
-        pages = f"{paper['start']}-{paper['end']}"
-        cite = (f"Papadogiannis, A. ({paper['year']}). {title}. {paper['journal']}, {paper['volume']}({paper['issue']}), "
-                f"{pages}. {paper['url']}")
-        article = {"journal": paper["journal"], "volume": int(paper["volume"]), "issue": int(paper["issue"]),
-                   "pages": pages, "year": int(paper["year"]), "doi": paper["url"]}
+        place = str(paper["volume"]) + (f"({paper['issue']})" if "issue" in paper else "")
+        pages = f"{paper['start']}-{paper['end']}" if "end" in paper else str(paper["start"])
+        link = paper.get("url") or "https://doi.org/" + paper["doi"]
+        cite = f"Papadogiannis, A. ({paper['year']}). {title}. {paper['journal']}, {place}, {pages}. {link}"
+        article = {"journal": paper["journal"], "volume": int(paper["volume"]),
+                   **({"issue": int(paper["issue"])} if "issue" in paper else {}),
+                   ("pages" if "end" in paper else "article_number"): pages, "year": int(paper["year"]), "doi": link}
     else:
         cite = f"Papadogiannis, A. ({paper['year']}). {title}. Working paper. https://doi.org/{g['ssrn']}"
         article = None
@@ -198,9 +200,10 @@ def main():
 
     item = lambda t: wrap(t, first="- ", rest="  ")
     step = lambda i, t: wrap(t, first=f"{i}. ", rest="   ")
-    status = (f"Published in {paper['journal']}, {paper['volume']}({paper['issue']}), {paper['year']}, pp. {pages}: {paper['url']}"
+    status = (f"Published in {paper['journal']}, {place}, {paper['year']}, {'pp. ' if 'end' in paper else 'article '}{pages}: {link}"
               if published else
-              f"Forthcoming in {paper['journal']} ({paper['year']}). Preprint: https://doi.org/{g['ssrn']}"
+              f"Forthcoming in {paper['journal']}{' (' + paper['year'] + ')' if 'year' in paper else ''}. "
+              f"Preprint: https://doi.org/{g['ssrn']}"
               if forthcoming else f"Working paper: https://doi.org/{g['ssrn']}")
     adds = list(g["adds"]) + checks(results) + [
         f"The results are stored as they were when the paper's numbers were taken from them. A check "
